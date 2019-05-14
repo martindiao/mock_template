@@ -17,7 +17,12 @@ def test(request):
         'test_array': [1, 2, 3, 4]
 
     }
-    return render(request, template, {'data': data})
+    return render(request, template, {'data': {
+        'test_data': 23333,
+        'test_data2': 23123123,
+        'test_array': [1, 2, 3, 4]
+
+    }})
 
 
 def index(request):

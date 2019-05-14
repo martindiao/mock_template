@@ -19,18 +19,18 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav desktop">
-          <li {% if this_module and this_module=='home.latest_reviews' %}class="active"{% endif %}><a href="{{ url_for('home.latest_reviews') }}">点评</a></li>
+          <li {% if this_module and this_module == 'home.latest_reviews' %}class="active"{% endif %}><a href="{% url  'mock:latest_reviews' %}">点评</a></li>
           {% if current_user.is_authenticated %}
-          <li {% if this_module and this_module=='home.follow_reviews' %}class="active"{% endif %}><a href="{{ url_for('home.follow_reviews') }}">关注</a></li>
+          <li {% if this_module and this_module == 'home.follow_reviews' %}class="active"{% endif %}><a href="{% url  'mock:follow_reviews' %}">关注</a></li>
           {% endif %}
-          <li {% if this_module and this_module=='course.popular' %}class="active"{% endif %}><a href="{{ url_for('course.popular') }}">热门</a></li>
-          <li {% if this_module and this_module=='course.public_courses' %}class="active"{% endif %}><a href="{{ url_for('course.public_courses') }}">公选</a></li>
+          <li {% if this_module and this_module == 'course.popular' %}class="active"{% endif %}><a href="{% url  'mock:course_popular' %}">热门</a></li>
+          <li {% if this_module and this_module == 'course.public_courses' %}class="active"{% endif %}><a href="{% url  'mock:course_public' %}">公选</a></li>
         </ul>
 
 
-        <form class="navbar-form navbar-left desktop" action="{{ url_for('home.search') }}" method="get" role="search">
+        <form class="navbar-form navbar-left desktop" action="{% url  'mock:search' %}" method="get" role="search">
           <div class="form-group">
-            <input type="text" name="q" class="form-control" id="search" placeholder="搜索课程、老师" style="width: 235px" value="{{ keyword or '' }}">
+            <input type="text" name="q" class="form-control" id="search" placeholder="搜索课程、老师" style="width: 235px" value="{{ keyword }}">
           </div>
           <span class="desktop-wide">
             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search grey"></span></button>
@@ -54,17 +54,18 @@
                 <div class="notice">{{ notification_text|safe }}</div>
               </li>
               {% endfor %}
-              <li class="ud-pd-sm pull-right"><a class="blue" href="{{ url_for('user.notice')}}">查看全部</a></li>
+              <li class="ud-pd-sm pull-right"><a class="blue" href="{% url 'mock:user_notice' %}">查看全部</a></li>
             </ul>
           </li>
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ current_user.username }}<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="{{ url_for('user.view_profile', user_id=current_user.id) }}">个人主页</a></li>
-              <li><a href="{{ url_for('user.account_settings', user_id=current_user.id) }}">设置</a></li>
+              <li><a href="{% url 'mock:user_view_profile' %}">个人主页</a></li>
+              <!-- <li><a href="{ url_for('user.account_settings', user_id=current_user.id) }}">设置</a></li> todo: 传参数-->
+              <li><a href="{% url 'mock:user_account_settings' %}">设置</a></li>
               <li class="divider"></li>
-              <li><a href="{{ url_for('home.logout') }}">退出</a></li>
+              <li><a href="{% url 'mock:logout' %}">退出</a></li>
             </ul>
           </li>
           {% else %}
@@ -74,15 +75,17 @@
 
         {% if current_user.is_authenticated %}
         <ul class="nav navbar-nav navbar-right mobile">
-          <li class="mobile"><a href="{{ url_for('user.notice') }}">消息
+          <li class="mobile"><a href="{% url 'mock:user_notice' %}">消息
 	    {% if current_user.unread_notification_count %}
-	    <span class="badge notice-number-box">{{ current_user.unread_notification_count }}</span>
+	    <!-- <span class="badge notice-number-box">{ current_user.unread_notification_count }}</span> todo: current_user related-->
             {% endif %}
             </a></li>
-          <li><a href="{{ url_for('user.view_profile', user_id=current_user.id) }}">个人主页</a></li>
-          <li><a href="{{ url_for('user.account_settings', user_id=current_user.id) }}">设置</a></li>
+          <!-- <li><a href="{ url_for('user.view_profile', user_id=current_user.id) }}">个人主页</a></li> -->
+          <li><a href="{% url 'mock:user_view_profile' %}">个人主页</a></li>
+          <!-- <li><a href="{ url_for('user.account_settings', user_id=current_user.id) }}">设置</a></li> -->
+          <li><a href="{% url 'mock:user_account_settings' %}">设置</a></li>
           <li class="divider"></li>
-          <li><a href="{{ url_for('home.logout') }}">退出</a></li>
+          <li><a href="{% url 'mock:logout' %}">退出</a></li>
         </ul>
         {% endif %}
       </div><!--/.nav-collapse -->
@@ -94,7 +97,8 @@
     <div class="modal-dialog modal-signin">
       <div class="modal-content">
         <form id="signin-form" class="form-signin">
-          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+          <!-- <input type="hidden" name="csrf_token" value="{ csrf_token() }}" /> -->
+          <input type="hidden" name="csrf_token" />
           <div class="form-signin-heading">
             <span class="h2">请登录</span>
             <a class="btn btn-default float-right" href="/signup">注册</a>
@@ -108,7 +112,7 @@
             <label>
               <input type="checkbox" name="remember">记住我
             </label>
-            <a class="float-right" href="{{ url_for('home.forgot_password') }}">忘记密码</a>
+            <a class="float-right" href="{% url 'mock:forgetPassword' %}">忘记密码</a>
           </div>
           <button class="btn btn-lg btn-blue btn-block" type="submit">登录</button>
         </form>

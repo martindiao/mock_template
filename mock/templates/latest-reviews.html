@@ -42,6 +42,18 @@
         {% else %}
         <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
         {% endif %}
+
+        {% for page in reviews %}
+            {% if page == reviews.page %}
+            <li class="active"><a href="#">{{ page }}<span class="sr-only">(current)</span></a></li>
+            {% elif page %}
+            <li><a href="https://www.baidu.com">{{ page }}</a></li>
+            <!-- <li><a href="{ url_for(this_module, page=page) }}">{{ page }}</a></li>  -->
+            {% else %}
+            <li><a>...</a></li>
+            {% endif %}
+        {% endfor %}
+
         {% if reviews.has_next %}
         <li>
           <a href="https://www.baidu.com">
