@@ -134,8 +134,15 @@
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="/static/js/jquery.min.js"></script>
-  <script src="/static/js/bootstrap.min.js"></script>
+  <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/bootstrap/css/dashboard.css" rel="stylesheet">
+    <script src="/static/bootstrap/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="/static/bootstrap/js/holder.min.js"></script>
   {% include 'common-scripts.html' %}
   <script>
    $('#signin').on('shown.bs.modal', function () {
@@ -158,7 +165,7 @@
      });
      $.ajax({
        type: "POST",
-       url: "{{ url_for('home.signin', next=request.path, ajax=True) | safe }}",
+       // url: "{ url_for('home.signin', next=request.path, ajax=True) | safe }}",
        data: formdata,
        dataType: "json",
        success: function(res) {
@@ -182,7 +189,7 @@
          return;
      $.ajax({
         type: "POST",
-        url: "{{ url_for('api.read_notifications') }}",
+        // url: "{ url_for('api.read_notifications') }}",
      });
    }
   </script>

@@ -7,6 +7,22 @@
       {% include 'mobile-navbar.html' %}
 
       <div class="ud-pd-sm"><span class="text-muted">共 {{ reviews.total }} 个点评（当前第 {{ reviews.page }} 页）</span></div>
+        <table class="table table-striped">     #使用bootsrtap定义好的样式，将客户信息展示在一个表里
+            <thead>　　　　　　　　　　　　　　　　　＃表头
+                <tr>　　　　
+                    <th>ID</th>　　　　　　　　　　＃每列标题
+                    <th>QQ</th>
+                    <th>姓名</th>
+                    <th>渠道</th>
+                    <th>咨询课程</th>
+                    <th>班级类型</th>
+                    <th>客户备注</th>
+                    <th>状态</th>
+                    <th>课程顾问</th>
+                    <th>日期</th>
+                </tr>
+            </thead>
+        </table>
 
       {% for review in reviews.items %}
           {% if not review.is_hidden or current_user.is_admin or current_user == review.author %}

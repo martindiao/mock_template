@@ -56,7 +56,7 @@ def latest_reviews(request):
         'prev_num': 23123,
         'has_next': True
     }
-    template = 'ustc_templates/latest-reviews.html'
+    template = 'latest-reviews.html'
     data = {
         'reviews': reviews_paged,
         'title': '全站最新点评',
