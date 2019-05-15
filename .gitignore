@@ -8,3 +8,5 @@ mock/templates/static/
 \.idea/
 
 *.pyc
+
+db\.sqlite3

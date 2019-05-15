@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 """
 All the pages' url are registered in the /mock/url.py 
 """
@@ -17,12 +18,7 @@ def test(request):
         'test_array': [1, 2, 3, 4]
 
     }
-    return render(request, template, {'data': {
-        'test_data': 23333,
-        'test_data2': 23123123,
-        'test_array': [1, 2, 3, 4]
-
-    }})
+    return render(request, template, {'data': data})
 
 
 def index(request):
@@ -41,11 +37,13 @@ def latest_reviews(request):
     return render_template('latest-reviews.html', reviews=reviews_paged, title='全站最新点评', this_module='home.latest_reviews')
     tips: this.module 是标记当前模版名称的, flask相关用法
     """
+    # 模拟登陆后情况 登陆前删掉下一行代码 User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+    request.user = User.objects.get(username='john')
     reviews_paged = {
         'total': 234,
         'page': 233333,
         'items': [{
-            'author': {'avatar': '我也不知道这个是什么', 'username': 'test_username', 'id': 23333333},
+            'author': {'avatar': '/static/bootstrap/image/test.jpg', 'username': 'test_username', 'id': 23333333},
             'course': {'id': 23333, 'name': 'test_name', 'teacher_names_display': 'HammerWang', 'teachers': True},
             'publish_time': 20181012,
             'content': 'test_content',

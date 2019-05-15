@@ -11,7 +11,7 @@
           {{ current_user.username }} <span class="caret"></span>
         </button>
         {% else %}
-        <button type="button" class="mobile btn btn-default navbar-btn pull-right right-mg-md" style="outline:none" data-toggle="modal" data-target="#signin">登录</button>
+        <button type="button" class="btn btn-default navbar-btn pull-right right-mg-md" style="outline:none" data-toggle="modal" data-target="#signin">登录</button>
         {% endif %}
         <a class="navbar-brand" href="{% url 'mock:index' %}">USTC评课社区</a>
       </div>
@@ -57,6 +57,7 @@
               <li class="ud-pd-sm pull-right"><a class="blue" href="{% url 'mock:user_notice' %}">查看全部</a></li>
             </ul>
           </li>
+
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ current_user.username }}<span class="caret"></span></a>
@@ -138,11 +139,9 @@
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/static/bootstrap/css/dashboard.css" rel="stylesheet">
     <script src="/static/bootstrap/js/jquery.min.js"></script>
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="/static/bootstrap/js/holder.min.js"></script>
   {% include 'common-scripts.html' %}
   <script>
    $('#signin').on('shown.bs.modal', function () {
